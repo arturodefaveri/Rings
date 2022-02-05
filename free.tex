@@ -1,0 +1,78 @@
+\section{Free Modules and Exact Sequences}
+Let $R$ be a ring and $M$ an $R$-module.
+For a subset $S$ of $M$ we say that $S$ generates $M$ $(M=\<S\>)$ if every $x \in M$ can be written as a linear combination of elements of $S$. 
+If $S$ is finite $M$ is said to be \textbf{finitely generated}. 
+$S$ is called \textbf{independent} if there is no nonzero linear combination in $S$ with nonzero coefficients. 
+An independent set of generators is called \textbf{basis}. 
+
+The category of $R$-modules has products and coproducts: direct products and sums. 
+Let $\{M_i\}$, $i \in I$, be a family of $R$-modules. 
+The direct product consists of all sequences $(m_i)$ with each $m_i \in M_i$; the direct sum of all sequences $(m_i)$ with each $m_i \in M_i$ and almost all $m_i$ null. 
+Operations are defined componentwise. Finite products and coproducts coincide in the category of $R$-modules. 
+Note however that the category of r\emph{i}ngs doesn't have coproducts (i.e. the direct sum of rings with componentwise operations is not necessarily a ring). 
+
+A sequence of modules and morphisms is something like 
+$$M \xrightarrow{f} N \xrightarrow{g} P\text{.}$$
+It's said to be \textbf{exact} if $\img f =\ker g$. If $X,Y$ are $R$-modules, then $\Hom_R(X,Y)$ is an $R$-module.
+We have: 
+\begin{align*} 
+\Hom_R(X\oplus Y, Z) & \simeq \Hom_R(X,Z) \oplus \Hom_R(Y,Z) \\
+\Hom_R(X,Y\oplus Z) & \simeq \Hom_R(X,Y) \oplus \Hom_R(X,Z) 
+\end{align*}
+
+\begin{thm} 
+\label{split} Let $0 \rightarrow M  \xrightarrow{f} N \xrightarrow{g} P \imp 0$ be an exact sequence of $R$-modules. 
+Then the following are equivalent: 
+\begin{itemize} 
+\item there is a morphism $\phi : P \to N$ such that $g\phi=1$; 
+\item there is a morphism $\psi : N \to M$ such that $\psi f=1$.
+\end{itemize} 
+If one of this condition is met: $N =\img f \oplus \ker \psi = \ker g \oplus \img \phi \simeq M \oplus P$. 
+
+\begin{proof} 
+We just prove that if there is a morphism $\phi : P \to N$ such that $g\phi=1$, then $N= \ker g \oplus \img \phi$. 
+Let $x \in N$. Then $x - \phi g(x) \in \ker g$. 
+Hence $N = \ker g + \img \phi$. 
+We show that $\ker g \cap \img \phi=0$. 
+Suppose that $x \in \ker g $ and $x =\phi(y)$ for some $ y \in P$. 
+Then $0=g(x)=g\phi(y)=y$ and $x=0$.
+\end{proof}
+\end{thm}
+
+When these conditions are satisfied the exact sequence is said to \textbf{split}. 
+
+\begin{cor} \label{corollary} Let $N,P$ be $R$-modules with $P$ free. 
+Let $g:N \to P$ be surjective. 
+There is a free submodule $M$ of $N$ such that $M \simeq P$ and $N = \ker g \oplus M $.
+\begin{proof} If $\{y_i\}_{i \in I}$ is a basis of $P$, for each $y_i$ let $x_i \in N$ such that $g(x_i) = y_i$. $M:=\< \{x_i\} \>$ is free. 
+Extend by linearity the map $y_i \mapsto x_i$ and call it $\phi$. 
+Since $g \phi =1$ the sequence $ 0 \to M \hookrightarrow N \xrightarrow{g} P \to 0$ splits. 
+\end{proof}
+\end{cor}
+
+Let $M$ be a free module over $R$. If $\{x_i\}_{i \in I}$ is a basis of $M$, $M=\bigoplus Rx_i$. 
+Let $\mathfrak{a}$ be a two-sided ideal of $R$. $\mathfrak{a}M$ is a submodule of $M$. 
+Moreover each $\mathfrak{a}x_i$ is a submodule of $Rx_i$. 
+We have $$\frac{M}{\mathfrak{a}M} \simeq \bigoplus \frac{Rx_i}{\mathfrak{a}x_i}$$ 
+and each $Rx_i/\mathfrak{a}x_i$ is isomorphic to $R/\mathfrak{a}$ (as $R$-module). 
+
+An $R$-module $E$ is called \textbf{principal} if there is $x \in E$ such that $E=Rx$. 
+The map $R \to Rx$, $a \mapsto ax$ is a linear map whose kernel is a left ideal of $R$, $\mathfrak{a}$. 
+In particular $E \simeq R/\mathfrak{a}$. 
+
+\begin{rem} \label{free} Let $\{v_i\}$, $i \in I$, be a set of generators for $E$ (at worst we take $I=E$!). 
+For each $i$ let $F_i$ be a free module with basis $e_i$, so that $F_i \simeq R$ as $R$-modules. 
+Let $F:=\bigoplus F_i$. The map $f: F \to E$ such that $f(e_i)=v_i$ is surjective. 
+Thus every module is a factor module of a free module. 
+\end{rem}
+
+\subsection*{Exercises}
+
+\begin{ex} \label{free1}
+Let $M = K + L$ and let $f:M \to N$ be a surjective linear map of $R$-modules.
+Prove that if $\ker f = K \cap L$, $N = f(K) \oplus f(L)$. 
+\end{ex}
+
+\begin{ex}
+Complete the details of Theorem \ref{split}.
+\end{ex}
