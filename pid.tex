@@ -1,0 +1,122 @@
+\section{Modules and Rings Decomposition} 
+Fix a ring $R$. All modules are going to be (left) $R$-modules and all linear maps $R$-linear maps.  
+
+An element $e$ of a ring is called \textbf{idempotent} if $e^2=e$. Observe that in this case $1-e$ is idempotent as well. 
+Two idempotents $e_1, e_2$ are \textbf{orthogonal} if $e_1 e_2 =0=e_2 e_1$. 
+A nonzero idempotent $e$ is \textbf{primitive} if whenever $e=e_1 + e_2$ for some idempotents $e_1, e_2$ then at least one is zero. 
+A set $\{e_1, \ldots, e_n\}$ of idempotents is \textbf{complete} if $1=e_1 + \cdots + e_n$. 
+
+Let $M_1, \ldots, M_n$ be submodules of a module $M$. We say that they \textbf{generate} $M$ if $M_1 + \cdots + M_n =M$ and that they are \textbf{independent} if $(M_1 + \cdots+ M_i) \cap M_{i+1} =0$ for each $i$. 
+Consider the map 
+$$s: M_1 \times \cdots \times M_n \to M$$ 
+given by $s(x_1, \ldots, x_n)=x_1 +\cdots + x_n$. 
+Then $s$ is injective if the submodules are independent, and surjective if they generate $M$. 
+In case it's a bijection we get 
+$$M = M_1 \oplus \cdots \oplus M_n\text{.}$$
+
+Suppose that it's indeed the case that $M = M_1 \oplus \cdots \oplus M_n\text{.}$ Let $p_i$ be the projection along the $i$-th coordinate. 
+Define $e_i \in \End(M)$ as $x \mapsto p_i(x)$. The following trivial remarks are pivotal: 
+\begin{itemize}
+    \item $e_i ^{2}=e_i$; 
+    \item $e_1 + \cdots + e_n =1$; 
+    \item $M_i = Me_i$. 
+\end{itemize}
+
+A nonzero module is \textbf{indecomposable} if $M$ and $0$ are its only direct summands.
+
+\begin{lem}
+Let $e \in \End M$ be idempotent. 
+$M= Me \oplus M(1-e)$. 
+In particular $M$ is indecomposable iff $0,1$ are the only idempotents in $\End M$.
+\begin{proof}
+For all $x \in M$, $x=xe+x(1-e)$. 
+Moreover if $xe=y(1-e)$, then $xe=xe^2=(y(1-e))e=0$. 
+\end{proof}
+\end{lem}
+
+\begin{cor}
+Let $M_i$ be submodules of $M$. 
+$M=M_1 \oplus \cdots \oplus M_n$ with each $M_i$ indecomposable iff there is  complete set $e_1, \ldots, e_n$ of pairwise orthogonal, primitive elements in $\End M$ such that $Me_i =M_i$. 
+\begin{proof}
+If $e_1, \ldots, e_n$ are as claimed, each $x \in M$ writes uniquely as $x=xe_1 + \cdots + xe_n$. Since $e_i$ is primitive $M_i$ is indecomposable. 
+
+Conversely, let $e_i$ defined as the projection along the $i$-th coordinate. $1=e_1 + \cdots + e_n$; orthogonality and primitiveness follow. 
+\end{proof}
+\end{cor}
+
+We're interested now in decomposing a ring $R$. 
+The goal is to find a decomposition in terms of two-sided ideal, the case of left ideals being already covered by the paragraphs above. 
+
+Assume that $R$, as left $R$-module, has a decomposition as a direct sum of two-sided ideals 
+$$R=R_1 \oplus \cdots \oplus R_n\text{.}$$
+We know that there is a (unique) set $\{u_1, \ldots, u_n\}$ of orthogonal idempotents in $R$ such that $1=u_1 + \cdots + u_n$ and $R_i=Ru_i$. 
+Since $R_i$ is a two-sided ideal, $u_iR \subseteq R_i$, thus for $i\neq j$ $u_i R u_j \subseteq u_i R \cap Ru_j \subseteq R_i \cap R_j=0$. 
+If $i =j$ 
+$$u_i r = u_i r (u_1 + \cdots + u_n) = u_i r u_i =(u_1 + \cdots + u_n)r u_i = r u_i$$
+implies that each $u_i$ is a central idempotent and $R_i = Ru_i =u_i R = u_i R u_i$ a ring with identity $u_i$. 
+
+Conversely, if $\{u_1, \ldots, u_n\}$ is a complete set of nonzero central idempotents then $R_i=Ru_i$ is a two sided ideal and $R=R_1 \oplus \cdots \oplus R_n$ (as a left but also as a right $R$-module!).
+We call this a \textbf{ring decomposition}\footnote{$R=R_1 \oplus \cdots \oplus R_n$ is an abuse of notation. 
+We may also write $R=R_1 + \cdots + R_n$.}. 
+
+If $R=R_1 \oplus \cdots \oplus R_n$ is a ring decomposition of $R$ and $\{u_1, \ldots, u_n\}$ are the associated central idempotents, then the map $r \mapsto (ru_1, \ldots, ru_n)$ yields
+$$R \simeq R_1 \times \cdots \times R_n\text{.}$$ 
+Vice versa, if $R_1, \ldots, R_n$ are rings and $i_1, \ldots, i_n$ the correspondent injcections into $R_1 \times \cdots \times R_n$, 
+$$R_1 \times \cdots \times R_n \simeq i_1(R_1) \oplus \cdots \oplus i_n(R_n)$$
+and the central idempotents are $i_j(1)$. 
+
+\begin{thm}
+Let $R_1, \ldots, R_n$ be nonzero two-sided ideals of $R$ Then 
+$$R = R_1 \oplus \cdots \oplus R_n$$ 
+as a ring decomposition iff there is a set of pairwise orthogonal central idempotents $u_1, \ldots, u_n \in R$ with $u_1 + \cdots + u_n =1$ and $R_i =Ru_i$. 
+In particular $R$ is indecomposable as a ring iff $1$ is the only nozero central idempotent.
+\end{thm}
+
+In general a ring doesn't have a ring decomposition into \textit{indecomposable} rings. 
+$R$ does have such a decomposition when $R$ (as left $R$-module) has a decomposition of whose associated idempotents are primitive. 
+This is the method for determining such a decomposition.
+Assume that $R=Re_1 \oplus \cdots \oplus Re_n$ is \textit{a} decomposition of $R$ and let $\{e_1, \ldots, e_n\}$ be the associated idempotents. 
+Let $e_i \sim e_j$ if there is $e_k$ such that $e_k R e_i \neq 0$ and $e_k R e_j \neq 0$. 
+Let $\approx$ be the transitive closure of $\sim$. 
+
+If $u$ is a nonzero central idempotent and $ue_i \neq 0$, then $ue_i$ and $(1-u)e_i$ are orthogonal idempotents such that $e_i=ue_i+(1-u)e_i$. 
+Since $e_i$ is primitive $ue_i=e_i$. 
+If in addition $e_k R e_i \neq 0$ then $ue_k R e_i=e_k R e_i$ and $ue_k \neq 0$. 
+Thus if $e_j \sim e_i$ (or $e_j \approx e_i$), then $ue_i \neq 0$ iff $ue_j \neq 0$. 
+
+Let $u_i :=\sum_{E_i} e_j$ where $E_i$ is a $\approx$ equivalence class. $u_i$ is a nonzero idempotent and $\{u_1, \ldots, u_m\}$ is complete and pairwise orthogonal. 
+We summarize all this in the following theorem (which we don't prove). 
+
+\begin{thm}
+Let $\{e_1, \ldots, e_n\}$ be a complete set of pairwise orthogonal and primitive idempotents of $R$.
+Let $u_i$ as above. 
+$\{u_1, \ldots, u_m\}$ is a complete set of pairwise orthogonal central idempotents. 
+$R$ decomposes uniquely as 
+$$u_1 R u_1 + \cdots + u_m R u_m$$
+and each summand $u_iRu_i$ is indecomposable. 
+
+\end{thm}
+
+\subsection*{Exercises}
+\begin{ex}
+\label{boolean}
+Let $B$ be a boolean ring (a ring whose all elements are idempotent).
+Suppose that there is a set $e_1, \ldots , e_n \in B$ of pairwise orthogonal primitive idempotents with $1= e_1 + \cdots +e_n$. 
+Prove that if $a \in B$ is non-zero, then there exists a unique subset $\{i_1,\ldots,i_m\} \subseteq \{1,\ldots,n\}$ such that $a= e_{i_1} +\ldots+e_{i_m}$.
+
+Deduce the following: 
+\textit{Let $R = R_1 + \cdots +R_n$ be a ring decomposition of $R$ with each $R_1,\ldots ,R_n$ indecomposable as a ring.
+Let $u_1, \ldots, u_n$ be the central idempotents of this decomposition. 
+If $R = S_1 +\cdots + S_m$ is a ring decomposition of $R$ with associated central idempotents $v_1 ,\cdots, v_m$, then there is a partition $A_1,\ldots, A_m$ of $\{1,\ldots,n\}$ such that $v_i = \sum_{A_i} u_j$. 
+In particular $S_i = \sum_{A_i} R_j$.}
+
+
+\end{ex}
+
+\begin{ex}
+A ring $R$ is said to be $\textbf{local}$ if it has a unique two-sided maximal ideal. 
+Call it $I$. 
+Prove that $I=R\setminus R^{\ast}$, where $R^{\ast}$ is the set of invertible elements. 
+Let $M$ be a $R$-module. 
+Deduce that if $\End_R(M)$ is local, then $M$ is indecomposable.
+\end{ex}
