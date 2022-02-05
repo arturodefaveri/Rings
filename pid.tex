@@ -1,122 +1,151 @@
-\section{Modules and Rings Decomposition} 
-Fix a ring $R$. All modules are going to be (left) $R$-modules and all linear maps $R$-linear maps.  
 
-An element $e$ of a ring is called \textbf{idempotent} if $e^2=e$. Observe that in this case $1-e$ is idempotent as well. 
-Two idempotents $e_1, e_2$ are \textbf{orthogonal} if $e_1 e_2 =0=e_2 e_1$. 
-A nonzero idempotent $e$ is \textbf{primitive} if whenever $e=e_1 + e_2$ for some idempotents $e_1, e_2$ then at least one is zero. 
-A set $\{e_1, \ldots, e_n\}$ of idempotents is \textbf{complete} if $1=e_1 + \cdots + e_n$. 
+\section{Modules over a Principal Ring} By an \textbf{entire} ring we mean a commutative ring in which $1\neq 0$ and without zero-divisors. 
+A \textbf{principal ring} is an entire ring whose ideals are principal.
+Let $R$ be a principal rings. Modules are left $R$-modules and linear maps are $R$-linear.
 
-Let $M_1, \ldots, M_n$ be submodules of a module $M$. We say that they \textbf{generate} $M$ if $M_1 + \cdots + M_n =M$ and that they are \textbf{independent} if $(M_1 + \cdots+ M_i) \cap M_{i+1} =0$ for each $i$. 
-Consider the map 
-$$s: M_1 \times \cdots \times M_n \to M$$ 
-given by $s(x_1, \ldots, x_n)=x_1 +\cdots + x_n$. 
-Then $s$ is injective if the submodules are independent, and surjective if they generate $M$. 
-In case it's a bijection we get 
-$$M = M_1 \oplus \cdots \oplus M_n\text{.}$$
+If $F$ is a free module with basis $\{x_i\}_{i \in I}$, the cardinality of $I$ is uniquely determined,  and is called the \textbf{dimension} of $F$. 
+Assuming that the dimension of a vector space is a well-defined cardinal number, this is proved by taking a prime element $p$ in $R$: $F/pF$ is a vector space over the field $R/pR$ and the dimension is the same. 
 
-Suppose that it's indeed the case that $M = M_1 \oplus \cdots \oplus M_n\text{.}$ Let $p_i$ be the projection along the $i$-th coordinate. 
-Define $e_i \in \End(M)$ as $x \mapsto p_i(x)$. The following trivial remarks are pivotal: 
-\begin{itemize}
-    \item $e_i ^{2}=e_i$; 
-    \item $e_1 + \cdots + e_n =1$; 
-    \item $M_i = Me_i$. 
-\end{itemize}
+\begin{thm} 
+Let $F$ be a free module and $M$ a submodule. 
+$M$ is free and $\dim M \le \dim F$. 
+\begin{proof} 
+We prove the statement by induction on $n=\dim F$\footnote{If the dimension of $F$ is not finite then one enumerates the basis and employs transfinite induction.}. 
+If $n = 1$, then $F \simeq R$. 
+Thus, $M$ is isomorphic to $0$ or $R$. 
 
-A nonzero module is \textbf{indecomposable} if $M$ and $0$ are its only direct summands.
-
-\begin{lem}
-Let $e \in \End M$ be idempotent. 
-$M= Me \oplus M(1-e)$. 
-In particular $M$ is indecomposable iff $0,1$ are the only idempotents in $\End M$.
-\begin{proof}
-For all $x \in M$, $x=xe+x(1-e)$. 
-Moreover if $xe=y(1-e)$, then $xe=xe^2=(y(1-e))e=0$. 
+Let's prove the inductive step. 
+If $\{x_1, \ldots, x_{n+1}\}$ is a basis of $F$, define $F_n := \<x_1,...,x_n\>$, and let $M_n: = M \cap F_n$. 
+$M_n$ is a free module of dimension $ \le n$. 
+Now
+$$\frac{M}{M_n} = \frac{M}{M \cap F_n} \simeq \frac{M + F_n }{ F_n } \le \frac{F}{ F_n } \simeq R\text{.} $$
+By the base step, either $M/M_n$ is isomorphic to $ 0$ or to $R$. 
+In the first case, $M = M_n$, and we're done. 
+In the second case, by Corollary \ref{corollary} $M = M_n \oplus \<m\>$ for some $m \in M$. 
+Thus $M$ is free of dimension $\le n+1$.
 \end{proof}
-\end{lem}
+\end{thm}
 
-\begin{cor}
-Let $M_i$ be submodules of $M$. 
-$M=M_1 \oplus \cdots \oplus M_n$ with each $M_i$ indecomposable iff there is  complete set $e_1, \ldots, e_n$ of pairwise orthogonal, primitive elements in $\End M$ such that $Me_i =M_i$. 
-\begin{proof}
-If $e_1, \ldots, e_n$ are as claimed, each $x \in M$ writes uniquely as $x=xe_1 + \cdots + xe_n$. Since $e_i$ is primitive $M_i$ is indecomposable. 
-
-Conversely, let $e_i$ defined as the projection along the $i$-th coordinate. $1=e_1 + \cdots + e_n$; orthogonality and primitiveness follow. 
+\begin{cor} Let $E$ be a finitely generated module and $M$ a submodule. 
+Then $M$ is finitely generated. 
+\begin{proof} If $E=\<v_1, \ldots, v_n\>$ we consider a free module $F$ with basis $\{x_1, \ldots, x_n\}$. 
+The map $x_i \mapsto v_i$ is linear. 
+The preimage of $M$ in $F$ is free and hence finitely generated so that $M$ is finitely generated too.  
 \end{proof}
 \end{cor}
 
-We're interested now in decomposing a ring $R$. 
-The goal is to find a decomposition in terms of two-sided ideal, the case of left ideals being already covered by the paragraphs above. 
+A free one-dimensional module is thus isomorphic to $R$ and called \textbf{cyclic}. 
 
-Assume that $R$, as left $R$-module, has a decomposition as a direct sum of two-sided ideals 
-$$R=R_1 \oplus \cdots \oplus R_n\text{.}$$
-We know that there is a (unique) set $\{u_1, \ldots, u_n\}$ of orthogonal idempotents in $R$ such that $1=u_1 + \cdots + u_n$ and $R_i=Ru_i$. 
-Since $R_i$ is a two-sided ideal, $u_iR \subseteq R_i$, thus for $i\neq j$ $u_i R u_j \subseteq u_i R \cap Ru_j \subseteq R_i \cap R_j=0$. 
-If $i =j$ 
-$$u_i r = u_i r (u_1 + \cdots + u_n) = u_i r u_i =(u_1 + \cdots + u_n)r u_i = r u_i$$
-implies that each $u_i$ is a central idempotent and $R_i = Ru_i =u_i R = u_i R u_i$ a ring with identity $u_i$. 
+$x$ in a module $M$ is said to be a \textbf{torsion} element if there a nonnull coefficient in $R$ such that $ax=0$. 
+Let $M_{\tor}$ be the submodule of torsion elements. 
+We say that $M$ is a \textbf{torsion module} if $M=M_{\tor}$ and that $M$ is \textbf{torsion free} if $M_{\tor}=0$. 
 
-Conversely, if $\{u_1, \ldots, u_n\}$ is a complete set of nonzero central idempotents then $R_i=Ru_i$ is a two sided ideal and $R=R_1 \oplus \cdots \oplus R_n$ (as a left but also as a right $R$-module!).
-We call this a \textbf{ring decomposition}\footnote{$R=R_1 \oplus \cdots \oplus R_n$ is an abuse of notation. 
-We may also write $R=R_1 + \cdots + R_n$.}. 
+\begin{lem} 
+If $M$ is a finitely generated torsion free module, then $M$ is free. 
+\begin{proof} 
+Let $M=\<y_1, \ldots, y_m\>$ and let $\{v_1, \ldots, v_n\}$ be a maximal linearly independent subset of these generators. 
+If $y$ is one of these generator there are $a , b_i \in R$ (not all zero) such that 
+$$ay + b_1 v_1 + \ldots + b_n v_n =0 \text{.}$$ 
+But then $a \neq 0$ and thus $ay \in \<v_1, \ldots, v_n\>$. 
+Let $a_j \neq 0$ the correspondent $a$ of each $y_j$, $j=1, \ldots, m$, such that $a_j y_j \in \<v_1, \ldots, v_n\>$. 
+Let $a:=a_1 \cdots a_m$ the product of these coefficients. 
+$aM$ is contained in $\<v_1, \ldots, v_n\>$ and thus is free. 
+But $M$ is torsion free: the map $x \mapsto ax$ is injective so that $M \simeq aM$.
+\end{proof}
+\end{lem}
 
-If $R=R_1 \oplus \cdots \oplus R_n$ is a ring decomposition of $R$ and $\{u_1, \ldots, u_n\}$ are the associated central idempotents, then the map $r \mapsto (ru_1, \ldots, ru_n)$ yields
-$$R \simeq R_1 \times \cdots \times R_n\text{.}$$ 
-Vice versa, if $R_1, \ldots, R_n$ are rings and $i_1, \ldots, i_n$ the correspondent injcections into $R_1 \times \cdots \times R_n$, 
-$$R_1 \times \cdots \times R_n \simeq i_1(R_1) \oplus \cdots \oplus i_n(R_n)$$
-and the central idempotents are $i_j(1)$. 
+\begin{thm} 
+Let $E$ be a finitely generated module. 
+Then $E/E_{\tor}$ is free. 
+Moreover, there is a free submodule $M\le E$ such that $E = E_{\tor} \oplus M$. 
+\begin{proof} We prove that $E/E_{\tor}$ is torsion free and we apply the lemma (clearly $E/E_{\tor}$ is finitely generated). 
+Let $X:=x+ E_{\tor}$ for some $x \in E$. 
+Let $b$ a nonnull coefficient such that $bX=0$. 
+Then $bx \in E_{\tor}$ and there is a nonnull $c \in R$ such that $cbx=0$. 
+Thus $x \in E_{\tor}$ and $X=0$.  
 
-\begin{thm}
-Let $R_1, \ldots, R_n$ be nonzero two-sided ideals of $R$ Then 
-$$R = R_1 \oplus \cdots \oplus R_n$$ 
-as a ring decomposition iff there is a set of pairwise orthogonal central idempotents $u_1, \ldots, u_n \in R$ with $u_1 + \cdots + u_n =1$ and $R_i =Ru_i$. 
-In particular $R$ is indecomposable as a ring iff $1$ is the only nozero central idempotent.
+The map $E \to E/E_{\tor}$ is surjective. 
+We can apply Corollary \ref{corollary} to obtain the second part of the statement. 
+\end{proof}
 \end{thm}
 
-In general a ring doesn't have a ring decomposition into \textit{indecomposable} rings. 
-$R$ does have such a decomposition when $R$ (as left $R$-module) has a decomposition of whose associated idempotents are primitive. 
-This is the method for determining such a decomposition.
-Assume that $R=Re_1 \oplus \cdots \oplus Re_n$ is \textit{a} decomposition of $R$ and let $\{e_1, \ldots, e_n\}$ be the associated idempotents. 
-Let $e_i \sim e_j$ if there is $e_k$ such that $e_k R e_i \neq 0$ and $e_k R e_j \neq 0$. 
-Let $\approx$ be the transitive closure of $\sim$. 
+As a corollary we get that the dimension of such submodule $M$ is uniquely determined ($M \simeq E/E_{\tor}$).
+This number is called the \textbf{rank} of $E$.
 
-If $u$ is a nonzero central idempotent and $ue_i \neq 0$, then $ue_i$ and $(1-u)e_i$ are orthogonal idempotents such that $e_i=ue_i+(1-u)e_i$. 
-Since $e_i$ is primitive $ue_i=e_i$. 
-If in addition $e_k R e_i \neq 0$ then $ue_k R e_i=e_k R e_i$ and $ue_k \neq 0$. 
-Thus if $e_j \sim e_i$ (or $e_j \approx e_i$), then $ue_i \neq 0$ iff $ue_j \neq 0$. 
+Recall that the \textbf{annihilator} of a subset $S\subseteq E$ is the ideal $\Ann_R S$ of $R$ given by those coefficients that zero all the elements of $S$. 
+In particular we have: $\Ann_R x= \<a\>$ and $\Ann_R E= \<b\>$. 
+We say that $a$ is a \textbf{period} of $x$ (and $b$ of $E$). 
+A period is determined up to multiplication by a unit (whence we shall mostly say \textit{the} period). 
+The period of a torsion module $E$ is positive, and it's not $1$ if $E \neq 0$. 
 
-Let $u_i :=\sum_{E_i} e_j$ where $E_i$ is a $\approx$ equivalence class. $u_i$ is a nonzero idempotent and $\{u_1, \ldots, u_m\}$ is complete and pairwise orthogonal. 
-We summarize all this in the following theorem (which we don't prove). 
+$c\in R$, $c \neq 0$, is called \textbf{exponent} for $x$ (for $E$) if $cx=0$ ($cE=0$). 
+Let $E_c$ be the submodule of elements with exponent $c$. 
+Let $p$ being prime we denote by $E(p)$ the submodule of elements with exponent a power of $p$. 
 
 \begin{thm}
-Let $\{e_1, \ldots, e_n\}$ be a complete set of pairwise orthogonal and primitive idempotents of $R$.
-Let $u_i$ as above. 
-$\{u_1, \ldots, u_m\}$ is a complete set of pairwise orthogonal central idempotents. 
-$R$ decomposes uniquely as 
-$$u_1 R u_1 + \cdots + u_m R u_m$$
-and each summand $u_iRu_i$ is indecomposable. 
-
+Let $E$ be a finitely generated nonzero torsion module with period $a=p_1 ^{r_1} \cdots p_n ^{r_n}$. 
+Then 
+$$E=E(p_1) \oplus \cdots \oplus E(p_n)\text{.}$$
+\begin{proof}
+We argue inductivey: let $a=bc$ with $b,c$ coprime. 
+Let $x , y \in R$ such that $1=xb+yc$. 
+We show that $E=E_b \oplus E_c$. 
+Let $z \in E_b \cap E_c$. 
+Then $z=z(xb+yc)=0$. 
+Moreover, let $z =xbz + ycz$. 
+$xbz \in E_c$ because $cxbz=axz=0$; $ycz \in E_b$. 
+\end{proof}
 \end{thm}
+
+$y_1, \ldots, y_m \in E$ are \textbf{independent} if whenever the expression $a_1 y_1 + \cdots + a_m y_m$ with coefficient in $R$ is zero then $a_i y_i =0$ for all $i$. 
+This is equivalent to require that the module $\< y_1 , \ldots , y_m\>$ has decomposition 
+$$\< y_1 , \ldots , y_m\> = \< y_1\> \oplus \cdots \oplus \< y_m\>  \text{.}$$ 
+
+\begin{lem} Let $E$ be a torsion module with exponent $p^r$ and $ x \in E$ an element with period $p^r$. 
+Let $Y_1, \ldots, Y_m$ independent elements of $E/\<x\>$. 
+There is a representative $y_i$ of $Y_i$ with same period such that $x, y_1, \ldots, y_m$ are independent.
+
+\begin{proof}
+Let $Y$ have period $p^n$ and $y$ be a representative. 
+Since $p^n Y=0$, then $p^n y \in \<x\>$: $p^n y =p^s c x$ with $p$ and $c$ coprime and $s \le r$. 
+If $s=r$ we are done. 
+If $s <r$, then $p^s cx$ has period $p^{r-s}$ and $y$ has period $p^{n+r-s}$. 
+Since $p^r$ is an exponent of $E$, $n+r-s \le r$. 
+Thus $n \le s$; $y-p^{s-n} c x$ is a representative of $Y$ with same period. 
+As to the last statement, suppose that 
+$$ax + a_1 y_1 + \cdots + a_m y_m=0\text{.}$$ 
+Then $a_1 Y_1 + \cdots a_m Y_m=0$. 
+By hypothesis $a_i Y_i=0$. 
+If $p^{r_i}$ is the period of $Y_i$, then $p^{r_i}$ divides $a_i$. 
+Then $a_i y_i =0$ and finally $ax=0$. 
+\end{proof}
+\end{lem}
+
+Each $E(p)$ can be written as a direct sum $$E(p) = \frac{R}{\< p^{r_1}\>} \oplus \cdots \oplus \frac{R}{\< p^{r_s}\>} $$
+with $1 \ge r_1 \ge \cdots \ge r_s$. 
+Observe that $E(p)=:E$ is finitely generated. 
+Let $x_1 \in E$ with period $p^{r_1}$ for some prime $p$ and maximal $r_1$. 
+Consider $E/\<x_1\>$. 
+$(E/\<x_1\>)_p$ is a vector space over $R/pR$, whose dimension is strictly less than the dimension of $E_p$. 
+If $Y_1, \ldots, Y_m$ are linearly independent elements of $(E/\<x_1\>)_p$ then lemma above implies that $\dim E_p \ge m+1$: we can always find an element of $\<x_1\>$ with period $p$ independent of $y_1, \ldots, y_m$. 
+Then we go on by induction: there are $X_2, \ldots, X_s$ with periods $p^{r_2}, \ldots, p^{r_s}$ such that $r_2 \ge \ldots \ge r_s$. 
+By lemma above there are representatives $x_2, \ldots, x_s$ with period $p^{r_i}$ and such that $x_1, \ldots, x_s$ are independent. 
+Since $r_1$ is maximal, $r_1 \ge r_2$. 
+
+
+The decomposition is essentially unique, as the following result (which we don't prove) illustrates. 
+
+\begin{thm} Let $E$ be a finitely generated nonzero torsion module. 
+Then 
+$$E\simeq \frac{R}{\<q_1\>}\oplus \cdots \oplus \frac{R}{\<q_r\>}$$
+where each $q_i$ is a nonzero element of the ring. 
+Moreover $q_1 \mid q_2 \mid \cdots \mid q_r$ and the sequence of ideals $\<q_1\>, \ldots, \<q_r\>$ is uniquely determined. 
+\end{thm}
+
+The ideals $\<q_1\>, \ldots, \<q_r\>$ are called \textbf{invariants} of $E$. 
 
 \subsection*{Exercises}
 \begin{ex}
-\label{boolean}
-Let $B$ be a boolean ring (a ring whose all elements are idempotent).
-Suppose that there is a set $e_1, \ldots , e_n \in B$ of pairwise orthogonal primitive idempotents with $1= e_1 + \cdots +e_n$. 
-Prove that if $a \in B$ is non-zero, then there exists a unique subset $\{i_1,\ldots,i_m\} \subseteq \{1,\ldots,n\}$ such that $a= e_{i_1} +\ldots+e_{i_m}$.
-
-Deduce the following: 
-\textit{Let $R = R_1 + \cdots +R_n$ be a ring decomposition of $R$ with each $R_1,\ldots ,R_n$ indecomposable as a ring.
-Let $u_1, \ldots, u_n$ be the central idempotents of this decomposition. 
-If $R = S_1 +\cdots + S_m$ is a ring decomposition of $R$ with associated central idempotents $v_1 ,\cdots, v_m$, then there is a partition $A_1,\ldots, A_m$ of $\{1,\ldots,n\}$ such that $v_i = \sum_{A_i} u_j$. 
-In particular $S_i = \sum_{A_i} R_j$.}
-
-
-\end{ex}
-
-\begin{ex}
-A ring $R$ is said to be $\textbf{local}$ if it has a unique two-sided maximal ideal. 
-Call it $I$. 
-Prove that $I=R\setminus R^{\ast}$, where $R^{\ast}$ is the set of invertible elements. 
-Let $M$ be a $R$-module. 
-Deduce that if $\End_R(M)$ is local, then $M$ is indecomposable.
+Deduce the structure theorem for finite abelian groups:  every finite abelian group can be expressed as the direct sum of cyclic subgroups of prime-power order. 
+(Hint: a group is a $\ZZ$-module).
 \end{ex}
