@@ -1,0 +1,232 @@
+\section{Simple Modules and Rings}
+
+A \textbf{division ring} is a ring in which $1\neq 0$ and such that every nonnull element has an inverse. 
+A commutative division ring is a field. A module over a division ring is also called \textbf{vector space}.
+ 
+We say that an $R$-module is \textbf{simple} if it's nonzero and if it has no other submodule than $0$ and itself. 
+
+\begin{thm}[Schur's Lemma] Let $E,F$ be simple $R$-modules.
+Every nonzero map between $E$ and $F$ is an isomorphism. 
+In particular $\End_R(E)$ is a division ring. 
+\begin{proof} 
+Let $f$ be such a map. 
+Its kernel is trivial and its image is $F$.  
+\end{proof}
+\end{thm}
+
+\begin{lem} Let $E$ be an $R$-module whose submodules $F$ admit a complement: $E=F\oplus G$.
+Then every nonzero submodule of $E$ has a simple submodule. 
+\begin{proof}
+Let $v \in E, v \neq 0$. $Rv$ is a principal submodule of $E$. 
+Consider the kernel $L$ of the map $R \to Rv$. 
+$L$ is contained in a maximal left ideal $M$. 
+$M/L$ is  maximal submodule of $R/L$, hence $Mv$ is a maximal submodule of $Rv$. 
+By hypothesis $E=Mv \oplus G$, whence $Rv = Mv \oplus (G \cap Rv)$, because every element $x \in Rv$ can be written uniquely as $x=mv+g$ with $m \in M$, $g \in G$ and $g = x - mv \in Mv$. 
+Since $Mv$ is maximal in $Rv$, $G \cap Rv$ is simple.  
+\end{proof}
+\end{lem} 
+
+\begin{thm}
+The following conditions on a $R$-module $E$ are equivalent. 
+\begin{enumerate}
+    \item $E$ is the sum of simple submodules.
+    \item $E$ is the direct sum of simple submodules.
+    \item Every submodule $F$ of $E$ admits a complement: $E=F \oplus G$.
+\end{enumerate}
+\begin{proof}
+Let's prove that the first item implies the second.
+Let $E=\sum E_i$, $i \in I$, be a sum of simple submodules. 
+We show that there is $J \subseteq I$ such that $E=\bigoplus E_j$, $j \in J$. 
+The subsets $S$ of $I$ such that the sum $\sum E_s$ ($s \in S$) is direct, ordered by inclusion, satisfy the assumptions of Zorn's Lemma. 
+Define $J$ to be a maximal subset given by Zorn. 
+Each $E_i$ is contained in the sum over $j \in J$: $\sum E_j \cap E_i$ is a submodule of  $E_i$; it's equal to $E_i$: if the intersection were zero $J$ wouldn't be maximal. 
+
+Let $F$ be a submodule of $E = \bigoplus E_i$, $i \in I$. 
+Let $J$ be a maximal  subset of $I$ such that $F + \bigoplus E_j$ ($j \in J$) is direct. 
+Argue as before. 
+
+The third item implies the first. 
+Let $F$ be the submodule of $E$ which is sum of all simple submodules of $E$. 
+By way of contradiction, if $F \neq E$, then $E=H \oplus G$, with $G \neq 0$. 
+Then, by lemma above, $G$ contains a simple submodule, contradicting the definition of $F$.  \end{proof}
+\end{thm}
+
+An $R$-module satisfying one of these equivalent conditions is called \textbf{semisimple}. 
+A ring is semisimple if $1\neq 0$ and it's semisimple as a left $R$-module. 
+
+\begin{thm}
+Let $E$ be a nonzero $R$-module and $K:=\End_R(E)$.
+Then $\End_R(E^n)\simeq \M_n(K)$. 
+\begin{proof}
+Consider a map $f : E^n \to E^n$. Let $f_i$ be the restriction of $f$ to the $i$-th factor of $E^n$ and $\pi_j$ be the projection along the $j$-th component. 
+Every $x$ has a unique expression as $x = x_1 +\cdots + x_n$. Identify $x$ with the column
+$$\begin{pmatrix}
+x_1 \\
+\vdots \\
+x_n \\
+\end{pmatrix}$$
+and $f$ with the matrix 
+$$\begin{pmatrix}
+\pi_1 f_1 & \cdots & \pi_1 f_n \\
+\vdots  &  & \vdots  \\
+\pi_n f_1 & \cdots & \pi_n f_n \\
+\end{pmatrix}$$
+The effect of $f$ on $x$ is described by matrix multiplication. Conversely, given a matrix $(f_{ij})$ with elements in $\End_R(E)$ we define an endomorphism of $E^n$ by means of this matrix. 
+\end{proof}
+\end{thm}
+
+Here there's something tricky going on. 
+Let $E=R$ as $R$-module in the preceding theorem. 
+If $R$ is a field then $\End_R(R^n) \simeq \M_n(R)$ as usual. 
+However, if $R$ is not commutative, $\End_R(R)$ is not isomorphic to $R$ but to $R^{\op}$! 
+Therefore $\End_R(R)$ is isomorphic to $\M_n(R^{\op})$ (or to $\M_n(R)^{\op}$ which is the same). 
+
+\begin{thm} Let $E=E_{1} ^{n_1} \oplus \cdots \oplus E_{r} ^{n_r}$ be a direct sum of simple nonisomorphic modules $E_i$.
+Then each $E_i$ and each $i$ is uniquely determined. 
+\begin{proof} Suppose that we have an isomorphism 
+$$E_{1} ^{n_1} \oplus \cdots \oplus E_{r} ^{n_r} \simeq F_{1} ^{m_1} \oplus \cdots \oplus F_{s} ^{m_s}\text{.}$$
+By Schur's Lemma each $E_i$ is isomorphic to some $F_j$ and vice versa. 
+It follows that $r=s$ and (up to a permutation of the indices) $E_i \simeq F_i$. 
+But then the claim follows from the remark that if $E$ is simple and $E^n \simeq E^m$, then $n=m$.
+$\End_R(E^n)\simeq \M_n(K) $ as above is a $K$-vector space with dimension $n^2$, so that $n$ is uniquely determined.
+\end{proof}
+\end{thm}
+
+We shall call $n_1 + \cdots + n_r$ the \textbf{length} of $E$. 
+
+\begin{lem}
+If $R$ is semisimple, every $R$-module is semisimple. 
+\begin{proof}
+Let $E$ be an $R$-module. By Remark \ref{free} $E$ is a factor module of the free module $\bigoplus Rx_i$ where $\{x_i\}_{i \in I}$ is a set of generators. 
+But $Rx_i \simeq R$ is semisimple adn quotients preserve semisimplicity (see Exercise \ref{factor} below). 
+\end{proof}
+\end{lem}
+
+A ring is \textbf{simple} if it's nonzero an has no two-sided ideal besides zero and itself.
+
+\begin{thm} Let $R$ be a semisimple ring. Then 
+$$R=L_1 ^{n_1} \oplus \cdots \oplus L_s ^{n_s} = R_1 \oplus \cdots \oplus R_s$$
+where each $R_i$ is a simple ring. 
+\begin{proof}
+Since $R$ is semisimple, $R=\bigoplus L_i$, $i \in I$, where each $L_i$ is a simple left ideal of $R$.
+Thus the unit element can be written as $1=\sum e_i$, with almost all $e_i=0$: $1=e_1 + \cdots + e_s\text{.}$ 
+Now let $x=\sum x_i \in R$; for any $j=1,\ldots,s$, $e_j x=e_j x_j $ and 
+$$x_j = e_1 x_j + \cdots + e_s x_j=e_j x_j\text{.}$$ 
+Also $x=e_1 x + \cdots + e_s x$. 
+This proves that the set $I$ is finite with $s$ elements, and also that each $x$ writes uniquely as $x=e_1 x + \cdots + e_s x$. 
+Define $R_i$ to be the sum of all simple left ideals isomorphic to $L_i$.
+\end{proof}
+\end{thm} 
+
+\begin{cor}
+If $R$ is a semisimple ring, every simple $R$-module $E$ is isomorphic to a left ideal $L_i$ of $R$.
+\begin{proof}
+Consider the map 
+$$f: L_1 ^{n_1} \oplus \cdots \oplus L_s ^{n_s} \to E$$ 
+that sends $1=e_1 + \cdots +e_s$ into $x \neq 0$.
+The image of $L_i$ can't be zero for every $i$.
+Thus for at least one $i$, $L_i \simeq  E$.
+\end{proof}
+\end{cor}
+ 
+It's easy to see that for each two-sided ideal $I$ of $R$, $\M_n(I)$ is a two-sided ideal of $\M_n(R)$. 
+Conversely \textit{each} ideal $J$ of $\M_n(R)$ arises in this way: $J=\M_n(I)$ for some two-sided ideal $I$ of $R$. 
+Let $I$ be the set of $a \in R$ that appear in some entry of a matrix of $J$. 
+This is an ideal of $R$. 
+Now, let $E_{ij}$ the matrix with $1$ in the entry $ij$ and zero elsewhere. 
+Pre- and post-composing matrices in $J$ by $E_{ij}$ moves entries to any desired place.
+
+In particular $\M_n(R)$ is simple iff $R$ is simple\footnote{This fact is an instance of a more deep, general phenomenon: the rings $R$ and $\M_n(R)$ are \textbf{Morita equivalent}.}.
+
+\begin{thm}[Wedderburn-Artin] A ring $R$ s semisimple iff there are $D_1, \ldots, D_s$ division rings such that 
+$$R \simeq \M_{n_1}(D_1) \oplus \cdots \oplus \M_{n_s}(D_s)\text{.}$$
+
+\begin{proof}
+One direction is clear: by what we've just remarked $M_{n_i}(D_i)$ is simple.
+
+Conversely, 
+\begin{align*}
+    \End_R (R) & \simeq \End_R (L_1 ^{n_1} \oplus \cdots \oplus L_s ^{n_s}) \\
+    & \simeq \End_R (L_1 ^{n_1} ) \oplus \cdots \oplus \End_R (L_s ^{n_s} ) \\
+    & \simeq \M_{n_1}(B_1) \oplus \cdots \oplus \M_{n_s}(B_s)
+\end{align*}
+where each $B_i$ is a division ring; but now observe that $\End_R R \simeq R^{\op}$ and that the opposite of a division ring is still a division ring.
+\end{proof}
+\end{thm}
+
+Now, let $E$ be an $R$-module and let $S:=\End_R(E)$. 
+$E$ is a $S$-module with scalar multiplication given by $(f,x) \mapsto f(x)$. 
+Each $a \in R$ induces a linear map $f_a : E \to E$ by $f_a(x)=ax$. 
+The function $a \mapsto f_a$ is a morphism of rings between $R$ and $\End_S(E)$, so that we can view $R$ as a subring of $\End_S(E)$. 
+If $a \in R$ and $s \in \End_R(E)$, $f_a(sx)=a(sx)=s(ax)=sf_a(x)$. 
+
+\begin{defn}
+A subring $T$ of $\End_R(E)$ is said to be \textbf{dense} in $\End_R(E)$ if for every $f \in \End_R(E)$ and every $x_1, \ldots, x_m\in E$ there is $t \in T$ such that $f(x_i)=tx_i$. 
+\end{defn}
+
+\begin{lem}
+Let $E$ be a semisimple $R$-module and let $S:=\End_R(E)$. 
+Let $f \in \End_S(E)$. For every $x \in E$ there is $a \in R$ such that $f(x)=ax$. 
+\begin{proof}
+By semisimplicity $E=Rx \oplus F$ for some $F$. 
+$\pi: E \to Rx$ is an element of $S$ and hence $f(x)=f(\pi x)=\pi f(x)$, so that $f(x) \in Rx$. 
+\end{proof}
+\end{lem}
+
+\begin{thm} [Jacobson's Density Theorem] Let $E$ be a semisimple $R$-module and let $S:=\End_R(E)$. 
+$R$ is dense in $\End_S(E)$.
+\begin{proof}
+First, we deal with the case $E$ simple. 
+Let $f \in \End_S(E)$. 
+Extend $f$ to a function $E^n \to E^n$ by letting $f^n(y_1, \ldots, y_n)=(f(y_1), \ldots, f(y_n))$.
+Let $S_n:=\End_R(E^n)$; it's easy to see that $f^n \in \End_{S_n}(E^n)$. 
+By lemma above there is $a \in R$ such that 
+$$(ax_1, \ldots, ax_n)=(f(x_1), \ldots, f(x_n))\text{.}$$
+If $E$ is not simple, it's nonetheless of type $E_1^{n_1} \oplus \cdots \oplus E_r^{n_r}$ with each summand simple. 
+$\End_R(E)$ is a ring of matrices splitting in blocks determined by the simple components. 
+Then the argument carries on as before.  
+\end{proof}
+\end{thm}
+
+An $R$-module $E$ is called \textbf{faithful} if $\Ann_R E=0$\footnote{That is to say, if the action of $R$ on $E$ is faithful.}. 
+A ring with a faithful simple module is called \textbf{primitive}. 
+Observe that a simple ring $R$ is primitve: by Zorn $R$ has a maximal left ideal $I$; $R/I$ is simple and $\Ann_R(R/I)$ can't be $R$ \footnote{However, a primitive ring needn't be simple: if $k$ is a field and $E$ an infinite-dimensional $k$-space, $\End_k(E)$ is primitive but not simple.}. 
+
+\begin{cor}
+A ring $R$ is primitive iff there is a division ring $D$ and a $D$-vector space $E$ such that $R$ is dense in $\End_D(E)$. 
+\begin{proof}
+Suppose that $R$ is primitive, and let $E$ be its faithful simple $R$-moudule. $E$ is a vector space over $D:=\End_R(E)$. 
+By Jacobson's Density Theorem $R$ is dense in $\End_D(E)$.  
+
+Conversely, let $E$ be a vector space over a division ring $D$ and let $R$ be dense in $\End_D(E)$. 
+$E$ is an $R$-module. 
+Let $x \in E$. For every $y \in E$ there is $f \in \End_D(E)$ such that $f(x)=y$, and consequently there is $a \in R$ such that $f(x)=ax$. Whence $E=Rx$, for \emph{every} $x \in E$; this implies that $E$ is simple. 
+Finally, since $R \subseteq \End_D(E)$, $\Ann_R(E) \subseteq \Ann_{\End_D(E)}(E)=0$ and $E$ is faithful. 
+\end{proof}
+\end{cor}
+
+\subsection*{Exercises}
+Let $R$ be a ring. 
+\begin{ex} Let $E$ be an $R$-module. Prove that $E$ is simple iff it's isomorphic to $R/I$ for some maximal left ideal $I$ of $R$.
+\end{ex}
+
+\begin{ex} 
+\label{factor} Prove that every submodule and every factor module of a semisimple module is semisimple. 
+\end{ex}
+
+\begin{ex}
+\label{artinian}
+Let $E$ be an $R$-module. $E$ is \textbf{artinian} if it satisfies the descending chain condition: there is no infinite descending chain of submodules of $E$. 
+Prove that
+\begin{itemize}
+    \item every nonempty family of submodules of $E$ has a minimal element (hint: Zorn);
+    \item a simple artinian ring is semisimple.
+\end{itemize} 
+\end{ex}
+
+\begin{ex}
+\label{wedderburn} 
+Prove (original) Wedderburn's Theorem: 
+
+Let $E$ be a faithful simple $R$-module. Let $D:=\End_R(E)$, and suppose $E$ is finite dimensional as a $D$-vector space. Then $R\simeq \End_D(E)$. 
+\end{ex}
