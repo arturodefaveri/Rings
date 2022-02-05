@@ -13,8 +13,10 @@
 \usepackage{euscript}
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{epigraph}
-
+\usepackage{appendix}
+\usepackage{tikz-cd}
 \usepackage[pdftex]{hyperref}
+
 \hypersetup{
   colorlinks,
   citecolor=black,
@@ -32,14 +34,17 @@
 \newtheorem{claim}{Claim}
 \theoremstyle{definition}
 \newtheorem{defn}[thm]{Definition}
+\newtheorem{ex}{Exercise}[section]
 \theoremstyle{remark}
 \newtheorem{rem}[thm]{Remark}
-\newtheorem{ex}[thm]{Example}
+
+\tikzcdset{
+  arrow style=math font
+}
 
 \def\lh{\textrm{lh}}
 \def\phi{\varphi}
 \def\P{\EuScript P}
-\def\M{\EuScript M}
 \def\D{\EuScript D}
 \def\U{\EuScript U}
 \def\S{\EuScript S}
@@ -59,10 +64,19 @@
 \def\iff{\leftrightarrow}
 \def\IMP{\Rightarrow}
 \def\IFF{\Leftrightarrow}
-\def\range{\textrm{rk}}
-\def\Mod{\textsf{Ann}}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\img}{img}
+\def\Ann{\textsf{Ann}}
 \def\Aut{\textsf{Aut}}
-\def\Th{\textsf{Hom}}
+\DeclareMathOperator{\Hom}{\sf{Hom}}
+\DeclareMathOperator{\End}{\sf{End}}
+\DeclareMathOperator{\Bil}{\sf{Bil}}
+\DeclareMathOperator{\M}{\sf{M}}
+\DeclareMathOperator{\op}{op}
+\DeclareMathOperator{\tor}{tor}
+\DeclareMathOperator{\J}{\sf{J}}
+\DeclareMathOperator{\R}{\sf{R}}
+
 
 %\def\equivL{\stackrel{\smash{\scalebox{.5}{\rm L}}}{\equiv}}
 %\def\swedge{\mathbin{\raisebox{.2ex}{\tiny$\mathbin\wedge$}}}
@@ -86,9 +100,16 @@
 
 \input{caveats}
 
+\input{free}
+
 \input{decomposition}
 
 \input{pid}
 
+\input{simple}
+
+\input{radical}
+
+\input{app}
 
 \end{document}
