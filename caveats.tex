@@ -1,0 +1,41 @@
+\section{Caveats} 
+We assume that the reader possesses elementary notions about rings and modules. 
+
+These are notes about r\textit{i}ngs, not about rngs: we tacitly assume that every ring has a unit. 
+Moreover the product $\cdot$ is associative by hypothesis. 
+Normally we don't require that $1\neq0$. 
+This trick allows us to treat $0$ as a r\textit{i}ng (and a morphism) without being inconsistent. 
+
+We won't bother with avoiding sloppy notation: $1$ is the unit of every ring as well as the identity function between any two objects; $0$ is the zero of every etc.
+
+Throughout our discussion we shall call a left module over a ring $R$, simply a $R$-module. The reader may generalize our treatment to the case of right modules. 
+
+Alas, lots of important rings, such as local or artinian rings, are relegated to exercises. 
+Our apologies.
+
+Last but not least, these notes are far from being original. 
+They just fill in the details of lectures given by Prof Yu Chen at Torino. 
+For the most it's just been copying and pasting from classic books such as\footnote{However, if you find a typo or a mathematical error -- it's more than possible! -- you can email me at \verb|arturo dot defaveri at edu dot unito dot it}: 
+\begin{itemize}
+    \item Serge Lang, \emph{Algebra}
+    \item Joseph J. Rotman, \emph{Advanced Modern Algebra} 
+    \item Frank W. Anderson \& Kent R. Fuller, \emph{Rings and Categories of Modules}
+\end{itemize}
+
+Here we list a couple of important things that don't fit naturally the subsequent topics. 
+
+\subsection*{Exercises}
+
+\begin{ex} If $E$ is an abelian group, the set of endomorphisms $\End(E)$ is a ring with pointwise addition and composition. 
+Let $E$ be an abelian group. 
+Prove that $E$ is a $R$-module iff there is a ring morphism 
+$$f: R \to \End(E)\text{.}$$
+Deduce that a $R$-module is also an $S$-module whenever there is a ring morphism $g: S \to R$. 
+\end{ex}
+
+\begin{ex}
+Let $R$ be a ring. 
+The ring $R^{\op}$ has same carrier and sum as $R$ but the products are reversed. 
+Prove that $R^{\op} \simeq \End_R(R)$. 
+(If $E$ is an $R$-module -- and $R$ is -- $\End_R(E)$ is still a ring as above). 
+\end{ex}
